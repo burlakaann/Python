@@ -1,0 +1,66 @@
+#zad1
+
+from math import sqrt 
+class Zespolona(object):
+	def __init__(self, re, im):
+		self.r = re
+		self.i = im
+	def wypisz(self):
+		if self.r == 0 and self.i >= 0 :
+			print("%si" %(self.i))
+		elif self.r == 0 and self.i < 0 :
+			print ("%si" %(self.i))
+		elif self.r > 0 and self.i < 0:
+			print("%s+%si" %(self.r, self.i))
+		else:
+			print("%s+%si" %(self.r, self.i))
+
+	def __add__(self, other):
+		return Zespolona(self.r + other.r, self.i + other.i)
+	def __sub__(self, other):
+		return Zespolona(self.r - other.r, self.i - other.i)
+	def __mul__(self, other):
+		return Zespolona(self.r * other.r - self.i *other.i, self.i * other.r + self.r * other.i)
+	def __truediv__(self, other):
+		rz, ur, rz2, ur2 = self.r, self.i, other.r, other.i 
+		r = float(rz2**2 + ur2**2)
+		return Zespolona((rz*rz2+ur*ur2)/r, (ur*rz2 - rz*ur2)/r)
+	def __eq__(self, other):
+		return self.r == other.r and self.i == other.i
+	def __abs__(self):
+		return sqrt(self.r**2 + self.i**2)
+
+
+print(Zespolona(2,3).wypisz())
+z1 = Zespolona(5,6)
+z2 = Zespolona(3,4)
+print((z1+z2).wypisz())
+print((z1-z2).wypisz())
+print((z1*z2).wypisz())
+print((z1 /z2).wypisz())
+
+#zad2
+
+from math import sqrt 
+from math import pow 
+
+class Punkt2D(object):
+	def __init__(self, x,y):
+		self.x = x
+		self.y = y
+	def odl(self, other):
+		return sqrt( pow(self.x - other.x,2) + pow(self.y - other.y,2))
+
+class Punkt3D(Punkt2D):
+	z = None
+	def __init__(self, x, y,z):
+		super(Punkt3D, self).__init__(x,y)
+		self.z = z
+	def odl(self, p3d):
+		return sqrt( pow(self.z - p3d.z,2) + pow(super(Punkt3D, self).odl(p3d),2))
+
+
+p1 = Punkt3D(1,8,6)
+p2 = Punkt3D(1,2,3)
+
+print(p1.odl(p2))
