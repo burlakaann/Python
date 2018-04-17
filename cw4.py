@@ -32,3 +32,16 @@ with open(sys.argv[1], "r") as f:
 				slownik[el] = 1
 			
 print slownik
+
+#zad4
+import sys
+
+if(sys.argv == '-'):
+  ciag = sys.stdin
+else:
+  with open(sys.argv[0], "r") as f:
+    ciag = sys.stdin.readlines()
+    for x in f:
+      for el in x.split('\n'):
+        if(ciag in el):
+          print (el)
