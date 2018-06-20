@@ -14,8 +14,8 @@ e1 = tk.Entry(root)
 e1.grid(row = 2, column = 1) 
 e1.insert(tk.END, "Message") 
 
-def red(): 
-e1. 
+
+
 
 rb1 = tk.Radiobutton(root, text = "red", command = red) 
 rb1.grid(column = 0, row = 0) 
